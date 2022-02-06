@@ -39,27 +39,43 @@
                             <span class="t-hidden sm:t-block t-pt-1">게시물</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#" class="t-h-full t-flex t-items-center px-2">
-                            <i class="fas fa-info"></i>
-                            <span class="t-hidden sm:t-block">&nbsp;</span>
-                            <span class="t-hidden sm:t-block t-pt-1">앱 정보</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="t-h-full t-flex t-items-center px-2">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span class="t-hidden sm:t-block">&nbsp;</span>
-                            <span class="t-hidden sm:t-block t-pt-1">로그아웃</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="t-h-full t-flex t-items-center px-2">
-                            <i class="fas fa-sign-in-alt"></i>
-                            <span class="t-hidden sm:t-block">&nbsp;</span>
-                            <span class="t-hidden sm:t-block t-pt-1">로그인</span>
-                        </a>
-                    </li>
+                    @guest
+                        <li>
+                            <a href="{{ route('register') }}" class="t-h-full t-flex t-items-center px-2">
+                                <i class="fas fa-user-plus"></i>
+                                <span class="t-hidden sm:t-block">&nbsp;</span>
+                                <span class="t-hidden sm:t-block t-pt-1">회원가입</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('login') }}" class="t-h-full t-flex t-items-center px-2">
+                                <i class="fas fa-sign-in-alt"></i>
+                                <span class="t-hidden sm:t-block">&nbsp;</span>
+                                <span class="t-hidden sm:t-block t-pt-1">로그인</span>
+                            </a>
+                        </li>
+                    @else
+                        <li>
+                            <a href="#" class="t-h-full t-flex t-items-center px-2">
+                                <i class="far fa-user"></i>
+                                <span class="t-hidden sm:t-block">&nbsp;</span>
+                                <span class="t-hidden sm:t-block t-pt-1">
+                                    {{ Auth::user()->name }}'s 마이페이지
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('logout') }}" class="t-h-full t-flex t-items-center px-2"
+                                onclick="document.logout_form.submit(); return false;">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span class="t-hidden sm:t-block">&nbsp;</span>
+                                <span class="t-hidden sm:t-block t-pt-1">로그아웃</span>
+                            </a>
+                            <form method="POST" name="logout_form" action="{{ route('logout') }}" class="t-hidden">
+                                @csrf
+                            </form>
+                        </li>
+                    @endguest
                 </ul>
             </nav>
         </div>
