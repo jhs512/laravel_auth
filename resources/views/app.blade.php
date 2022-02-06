@@ -32,11 +32,19 @@
                         </a>
                     </li>
                     <li
-                        class="{{ Str::startsWith(Route::currentRouteName(), 'articles.') ? 't-text-[#0A58CA]' : '' }}">
+                        class="{{ (Str::startsWith(Route::currentRouteName(), 'articles.') and!Str::startsWith(Route::currentRouteName(), 'articles.create'))? 't-text-[#0A58CA]': '' }}">
                         <a href="{{ route('articles.index') }}" class="t-h-full t-flex t-items-center px-2">
-                            <i class="fas fa-newspaper"></i>
+                            <i class="fas fa-list"></i>
                             <span class="t-hidden sm:t-block">&nbsp;</span>
-                            <span class="t-hidden sm:t-block t-pt-1">게시물</span>
+                            <span class="t-hidden sm:t-block t-pt-1">글</span>
+                        </a>
+                    </li>
+                    <li
+                        class="{{ Str::startsWith(Route::currentRouteName(), 'articles.create') ? 't-text-[#0A58CA]' : '' }}">
+                        <a href="{{ route('articles.create') }}" class="t-h-full t-flex t-items-center px-2">
+                            <i class="fas fa-pen"></i>
+                            <span class="t-hidden sm:t-block">&nbsp;</span>
+                            <span class="t-hidden sm:t-block t-pt-1">작성</span>
                         </a>
                     </li>
                     @guest
