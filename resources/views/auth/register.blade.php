@@ -1,10 +1,10 @@
 @extends('app')
 
 @section('content')
-    <section class="section-1 t-mt-4">
-        <div class="t-container t-mx-auto t-px-4">
+    <section class="section-1 t-mt-4 t-flex-grow t-flex t-items-center t-justify-center">
+        <div class="t-w-full t-max-w-lg t-px-4">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header"><i class="fas fa-user-plus"></i> {{ __('Register') }}</div>
 
                 <div class="card-body">
                     <form class="t-grid t-grid-cols-1 t-gap-4 t-mt-4" action="{{ route('register') }}" method="POST"
@@ -61,7 +61,7 @@
 
                         <div>
                             <button type="submit" class="btn btn-primary">
-                                {{ __('Register') }}
+                                <i class="fas fa-user-plus"></i> {{ __('Register') }}
                             </button>
                         </div>
                     </form>
