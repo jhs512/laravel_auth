@@ -24,7 +24,7 @@
             <div class="t-flex-grow"></div>
             <nav class="menu-1">
                 <ul class="t-flex t-h-full">
-                    <li class="{{ Route::currentRouteName() == 'home' ? 't-text-[#ff4545]' : '' }}">
+                    <li class="{{ Route::currentRouteName() == 'home' ? 't-text-[#0A58CA]' : '' }}">
                         <a href="{{ route('home') }}" class="t-h-full t-flex t-items-center px-2">
                             <i class="fas fa-home"></i>
                             <span class="t-hidden sm:t-block">&nbsp;</span>
@@ -32,7 +32,7 @@
                         </a>
                     </li>
                     <li
-                        class="{{ Str::startsWith(Route::currentRouteName(), 'articles.') ? 't-text-[#ff4545]' : '' }}">
+                        class="{{ Str::startsWith(Route::currentRouteName(), 'articles.') ? 't-text-[#0A58CA]' : '' }}">
                         <a href="{{ route('articles.index') }}" class="t-h-full t-flex t-items-center px-2">
                             <i class="fas fa-newspaper"></i>
                             <span class="t-hidden sm:t-block">&nbsp;</span>
@@ -40,14 +40,14 @@
                         </a>
                     </li>
                     @guest
-                        <li>
+                        <li class="{{ Route::currentRouteName() == 'register' ? 't-text-[#0A58CA]' : '' }}">
                             <a href="{{ route('register') }}" class="t-h-full t-flex t-items-center px-2">
                                 <i class="fas fa-user-plus"></i>
                                 <span class="t-hidden sm:t-block">&nbsp;</span>
                                 <span class="t-hidden sm:t-block t-pt-1">회원가입</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="{{ Route::currentRouteName() == 'login' ? 't-text-[#0A58CA]' : '' }}">
                             <a href="{{ route('login') }}" class="t-h-full t-flex t-items-center px-2">
                                 <i class="fas fa-sign-in-alt"></i>
                                 <span class="t-hidden sm:t-block">&nbsp;</span>
