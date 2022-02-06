@@ -5,7 +5,12 @@
 @section('content')
     <section class="section-1 t-mt-4">
         <div class="t-container t-mx-auto t-px-4">
-            <div class="t-grid t-grid-cols-1 t-gap-4">
+            <div class="t-flex">
+                <h1 class="t-font-bold t-mr-auto"><i class="fas fa-newspaper"></i> {{ $article->id }}번 글 내용</h1>
+                <a href="{{ route('articles.create') }}" class="link-primary"><i class="fas fa-pen"></i> 글 작성</a>
+            </div>
+
+            <div class="t-grid t-grid-cols-1 t-gap-4 t-mt-4">
 
                 <div class="t-flex t-gap-4 t-flex-wrap">
                     <div>
@@ -13,12 +18,12 @@
                     </div>
                     <div class="t-mr-auto">
                         <span class="badge bg-secondary">
-                            Date. {{ $article->created_at->format('y.m.d H:i') }}
+                            <i class="fas fa-clock"></i> {{ $article->created_at->format('y.m.d H:i') }}
                         </span>
                     </div>
                     <div>
                         <span class="badge bg-success">
-                            by {{ $article->user->name }}
+                            <i class="fas fa-user"></i> {{ $article->user->name }}
                         </span>
                     </div>
                 </div>
@@ -40,15 +45,27 @@
                 </div>
 
                 <div class="t-flex t-gap-4">
-                    <a href="{{ route('articles.edit', $article->id) }}" href="#" class="btn btn-link">수정</a>
+                    <a href="{{ route('articles.edit', $article->id) }}" href="#" class="btn btn-link">
+                        <i class="far fa-edit"></i>
+                        수정
+                    </a>
                     <form class="t-m-0" action="{{ route('articles.destroy', $article->id) }}" method="POST">
                         @method('DELETE')
                         @csrf
                         <button type="submit" onclick="if ( !confirm('정말 삭제하시겠습니까?') ) return false;"
-                            class="btn btn-outline-danger">삭제</button>
+                            class="btn btn-outline-danger">
+                            <i class="fas fa-trash-alt"></i>
+
+                            삭제
+                        </button>
                     </form>
-                    <a href="{{ route('articles.index') }}" class="btn btn-link t-ml-auto">리스트</a>
-                    <a href="{{ route('articles.create') }}" class="btn btn-link">작성</a>
+                    <a href="{{ route('articles.index') }}" class="btn btn-link t-ml-auto">
+                        <i class="fas fa-list"></i> 리스트
+                    </a>
+                    <a href="{{ route('articles.create') }}" class="btn btn-link">
+                        <i class="fas fa-pen"></i>
+                        작성
+                    </a>
                 </div>
             </div>
         </div>

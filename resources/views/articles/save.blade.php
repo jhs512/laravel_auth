@@ -26,12 +26,12 @@ $formMethod = $pageMode == 'write' ? 'POST' : 'PATCH';
                                 </div>
                                 <div class="t-mr-auto">
                                     <span class="badge bg-secondary">
-                                        Date. {{ $article->created_at->format('y.m.d H:i') }}
+                                        <i class="fas fa-clock"></i> {{ $article->created_at->format('y.m.d H:i') }}
                                     </span>
                                 </div>
                                 <div>
                                     <span class="badge bg-success">
-                                        by {{ $article->user->name }}
+                                        <i class="fas fa-user"></i> {{ $article->user->name }}
                                     </span>
                                 </div>
                             </div>
@@ -78,11 +78,18 @@ $formMethod = $pageMode == 'write' ? 'POST' : 'PATCH';
                                 <i class="fas fa-pen"></i>
                                 {{ $pageModeHan }}
                             </button>
-                            <a href="{{ route('articles.index') }}" class="btn btn-link">리스트</a>
+                            <a href="{{ route('articles.index') }}" class="btn btn-link">
+                                <i class="fas fa-list"></i>
+
+                                리스트
+                            </a>
 
                             @if ($pageMode == 'edit')
                                 <a class="t-m-0 btn btn-outline-danger"
-                                    href="javascript:if ( confirm('정말로 삭제하시겠습니까?') ) document.article_destory_form.submit();">삭제</a>
+                                    href="javascript:if ( confirm('정말로 삭제하시겠습니까?') ) document.article_destory_form.submit();">
+                                    <i class="fas fa-trash-alt"></i>
+                                    삭제
+                                </a>
                             @endif
                         </div>
                     </form>
