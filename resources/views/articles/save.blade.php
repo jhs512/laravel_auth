@@ -42,7 +42,7 @@ $formMethod = $pageMode == 'write' ? 'POST' : 'PATCH';
                         value="{{ old('title', $article->title) }}">
 
                     @error('title')
-                        <div class="invalid-feedback">
+                        <div class="invalid-feedback" role="alert">
                             {{ $message }}
                         </div>
                     @enderror
@@ -54,7 +54,7 @@ $formMethod = $pageMode == 'write' ? 'POST' : 'PATCH';
                         placeholder="내용을 입력해주세요.">{{ old('body', $article->body) }}</textarea>
 
                     @error('body')
-                        <div class="invalid-feedback">
+                        <div class="invalid-feedback" role="alert">
                             {{ $message }}
                         </div>
                     @enderror
@@ -65,7 +65,7 @@ $formMethod = $pageMode == 'write' ? 'POST' : 'PATCH';
                     <input type="file" name="img_1" class="@error('img_1') is-invalid @enderror form-control">
 
                     @error('img_1')
-                        <div class="invalid-feedback">
+                        <div class="invalid-feedback" role="alert">
                             {{ $message }}
                         </div>
                     @enderror
