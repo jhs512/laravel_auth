@@ -3,5 +3,8 @@
     "Register": "회원가입",
     "Email Address": "이메일 주소",
     "Password": "비밀번호",
-    "Confirm Password": "비밀번호 확인"
+    "Confirm Password": "비밀번호 확인",
+    "Login": "로그인",
+    "Forgot Your Password?": "비밀번호를 잊으셨나요?",
+    "Remember Me": "로그인 유지"
 }
