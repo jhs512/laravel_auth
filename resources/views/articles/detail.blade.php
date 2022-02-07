@@ -41,7 +41,7 @@
 
 
                 <div class="t-text-gray-500">
-                    {{ nl2br($article->body) }}
+                    {!! nl2br(e($article->body)) !!}
                 </div>
 
                 <div class="t-flex t-gap-4">
