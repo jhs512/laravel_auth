@@ -7,7 +7,9 @@
         <div class="t-container t-mx-auto t-px-4">
             <div class="t-flex">
                 <h1 class="t-font-bold t-mr-auto"><i class="fas fa-list"></i> 게시물 리스트</h1>
-                <a href="{{ route('articles.create') }}" class="link-primary"><i class="fas fa-pen"></i> 글 작성</a>
+                @can('create', App\Models\Article::class)
+                    <a href="{{ route('articles.create') }}" class="link-primary"><i class="fas fa-pen"></i> 글 작성</a>
+                @endcan
             </div>
             <ul class="t-grid t-grid-cols-1 sm:t-grid-cols-2 lg:t-grid-cols-3 t-gap-4 t-mt-4">
                 @foreach ($articles as $article)

@@ -39,14 +39,16 @@
                             <span class="t-hidden sm:t-block t-pt-1">글</span>
                         </a>
                     </li>
-                    <li
-                        class="{{ Str::startsWith(Route::currentRouteName(), 'articles.create') ? 't-text-[#0A58CA]' : '' }}">
-                        <a href="{{ route('articles.create') }}" class="t-h-full t-flex t-items-center px-2">
-                            <i class="fas fa-pen"></i>
-                            <span class="t-hidden sm:t-block">&nbsp;</span>
-                            <span class="t-hidden sm:t-block t-pt-1">작성</span>
-                        </a>
-                    </li>
+                    @can('create', App\Models\Article::class)
+                        <li
+                            class="{{ Str::startsWith(Route::currentRouteName(), 'articles.create') ? 't-text-[#0A58CA]' : '' }}">
+                            <a href="{{ route('articles.create') }}" class="t-h-full t-flex t-items-center px-2">
+                                <i class="fas fa-pen"></i>
+                                <span class="t-hidden sm:t-block">&nbsp;</span>
+                                <span class="t-hidden sm:t-block t-pt-1">작성</span>
+                            </a>
+                        </li>
+                    @endcan
                     @guest
                         <li class="{{ Route::currentRouteName() == 'register' ? 't-text-[#0A58CA]' : '' }}">
                             <a href="{{ route('register') }}" class="t-h-full t-flex t-items-center px-2">

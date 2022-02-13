@@ -7,7 +7,6 @@
         <div class="t-container t-mx-auto t-px-4">
             <div class="t-flex">
                 <h1 class="t-font-bold t-mr-auto"><i class="fas fa-newspaper"></i> {{ $article->id }}번 글 내용</h1>
-                <a href="{{ route('articles.create') }}" class="link-primary"><i class="fas fa-pen"></i> 글 작성</a>
             </div>
 
             <div class="t-grid t-grid-cols-1 t-gap-4 t-mt-4">
@@ -45,27 +44,34 @@
                 </div>
 
                 <div class="t-flex t-gap-4">
-                    <a href="{{ route('articles.edit', $article->id) }}" href="#" class="btn btn-link">
-                        <i class="far fa-edit"></i>
-                        수정
-                    </a>
-                    <form class="t-m-0" action="{{ route('articles.destroy', $article->id) }}" method="POST">
-                        @method('DELETE')
-                        @csrf
-                        <button type="submit" onclick="if ( !confirm('정말 삭제하시겠습니까?') ) return false;"
-                            class="btn btn-outline-danger">
-                            <i class="fas fa-trash-alt"></i>
+                    @can('update', $article)
+                        <a href="{{ route('articles.edit', $article->id) }}" href="#" class="btn btn-link">
+                            <i class="far fa-edit"></i>
+                            수정
+                        </a>
+                    @endcan
+                    @can('delete', $article)
+                        <form class="t-m-0" action="{{ route('articles.destroy', $article->id) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" onclick="if ( !confirm('정말 삭제하시겠습니까?') ) return false;"
+                                class="btn btn-outline-danger">
+                                <i class="fas fa-trash-alt"></i>
 
-                            삭제
-                        </button>
-                    </form>
+                                삭제
+                            </button>
+                        </form>
+                    @endcan
                     <a href="{{ route('articles.index') }}" class="btn btn-link t-ml-auto">
                         <i class="fas fa-list"></i> 리스트
                     </a>
-                    <a href="{{ route('articles.create') }}" class="btn btn-link">
-                        <i class="fas fa-pen"></i>
-                        작성
-                    </a>
+
+                    @can('create', App\Models\Article::class)
+                        <a href="{{ route('articles.create') }}" class="btn btn-link">
+                            <i class="fas fa-pen"></i>
+                            작성
+                        </a>
+                    @endcan
                 </div>
             </div>
         </div>
