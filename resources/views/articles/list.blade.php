@@ -46,6 +46,29 @@
                                             {{ $article->body }}
                                         </div>
                                     </a>
+
+                                    <div class="t-flex t-justify-end">
+                                        @can('update', $article)
+                                            <a href="{{ route('articles.edit', $article->id) }}" href="#"
+                                                class="btn btn-link">
+                                                <i class="far fa-edit"></i>
+                                                수정
+                                            </a>
+                                        @endcan
+                                        @can('delete', $article)
+                                            <form class="t-m-0"
+                                                action="{{ route('articles.destroy', $article->id) }}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="submit" onclick="if ( !confirm('정말 삭제하시겠습니까?') ) return false;"
+                                                    class="btn btn-outline-danger">
+                                                    <i class="fas fa-trash-alt"></i>
+
+                                                    삭제
+                                                </button>
+                                            </form>
+                                        @endcan
+                                    </div>
                                 </div>
                             </div>
                         </div>

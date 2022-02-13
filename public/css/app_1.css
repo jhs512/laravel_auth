@@ -527,6 +527,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .t-items-center {
   align-items: center;
 }
+.t-justify-end {
+  justify-content: flex-end;
+}
 .t-justify-center {
   justify-content: center;
 }
