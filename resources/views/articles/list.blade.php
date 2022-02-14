@@ -11,6 +11,13 @@
                     <a href="{{ route('articles.create') }}" class="link-primary"><i class="fas fa-pen"></i> 글 작성</a>
                 @endcan
             </div>
+            <div class="t-flex t-justify-end t-mt-3">
+                <form action="" class="t-flex">
+                    <input name="search_keyword" type="text" class="form-control" placeholder="검색" value="{{request()->get('search_keyword')}}">
+                    <span>&nbsp;</span>
+                    <button type="submit" class="btn btn-outline-success t-whitespace-nowrap">검색</button>
+                </form>
+            </div>
             <ul class="t-grid t-grid-cols-1 sm:t-grid-cols-2 lg:t-grid-cols-3 t-gap-4 t-mt-4">
                 @foreach ($articles as $article)
                     <li>
@@ -77,7 +84,7 @@
             </ul>
 
             <div class="t-mt-3">
-                {{ $articles->links() }}
+                {{ $articles->withQueryString()->links() }}
             </div>
         </div>
     </section>

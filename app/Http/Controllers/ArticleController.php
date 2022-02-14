@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ArticleSaveRequest;
 
@@ -18,9 +20,16 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $articles = Article::orderBy('id', 'desc')->paginate(3);
+        $articles = Article::with('user')->orderBy('id', 'desc');
+
+        if ( $request->input('search_keyword') ) {
+            $articles = $articles->where('title', 'like', "%{$request->input('search_keyword')}%");
+            $articles = $articles->orWhere('body', 'like', "%{$request->input('search_keyword')}%");
+        }
+
+        $articles = $articles->paginate(3);
 
         return view('articles.list', [
             'articles' => $articles
