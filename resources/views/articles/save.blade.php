@@ -71,6 +71,20 @@ $formMethod = $pageMode == 'write' ? 'POST' : 'PATCH';
                                     {{ $message }}
                                 </div>
                             @enderror
+
+                            @if ($article->img_1)
+                            <div class="form-check t-mt-2">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" value="Y" name="img_1__remove">
+
+                                    <span>삭제</span>
+                                </label>
+                            </div>
+                            
+                            <div>
+                                <img src="{{ asset('storage/' . $article->img_1) }}" alt="{{ $article->title }}" class="t-rounded">
+                            </div>
+                            @endif
                         </div>
 
                         <div class="t-flex t-gap-4">

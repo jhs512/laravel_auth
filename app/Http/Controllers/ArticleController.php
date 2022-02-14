@@ -20,7 +20,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::orderBy('id', 'desc')->get();
+        $articles = Article::orderBy('id', 'desc')->paginate(3);
 
         return view('articles.list', [
             'articles' => $articles
@@ -50,7 +50,7 @@ class ArticleController extends Controller
     {
         $validated = $request->validated();
         $article = new Article();
-        $article->user_id = 1;
+        $article->user_id = auth()->user()->id;
         $article->title = $validated['title'];
         $article->body = $validated['body'];
 
@@ -103,6 +103,13 @@ class ArticleController extends Controller
 
         $article->title = $validated['title'];
         $article->body = $validated['body'];
+
+        if ( isset($validated['img_1__remove'] )) {
+            if ($article->img_1) {
+                Storage::disk('public')->delete($article->img_1);
+            }
+            $article->img_1 = null;
+        }
 
         if ($request->hasFile('img_1')) {
             if ($article->img_1) {

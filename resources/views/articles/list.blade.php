@@ -75,6 +75,10 @@
                     </li>
                 @endforeach
             </ul>
+
+            <div class="t-mt-3">
+                {{ $articles->links() }}
+            </div>
         </div>
     </section>
 @endsection
